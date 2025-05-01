@@ -2,7 +2,8 @@
         <x-app-layout>
             <x-slot name="header">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    {{ __('Categories') }}
+                    {{ __('Categories') }}  
+                    
                 </h2>
             </x-slot>
         
@@ -22,7 +23,7 @@
                                 <h3 class="text-lg font-semibold mb-2">{{ $category->name }}</h3>
                                 <a href="{{ url('/authors/' . $category->id) }}"
                                    class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
-                                    Open
+                                    Show
                                 </a>
                             </div>
                         @endforeach

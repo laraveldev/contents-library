@@ -22,7 +22,7 @@
                         <h3 class="text-lg font-semibold mb-2">{{ $genere->name }}</h3>
                         <a href="{{ url('/authors/' . $genere->id) }}"
                            class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
-                            Open
+                            Show
                         </a>
                     </div>
                 @endforeach
