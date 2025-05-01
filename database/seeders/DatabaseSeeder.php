@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         Author::factory(10)->create();
         Category::factory()->count(10)->create();
-        Content::factory(10)->create();
+        Content::factory(10000)->create();
         Genere::factory(10)->create();
     }
 }
