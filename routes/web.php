@@ -8,6 +8,7 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
+//Profile uchun
 Route::get('/', function () {
     return view('welcome');
 });
@@ -19,8 +20,24 @@ Route::middleware('auth')->group(function () {
 });
 require __DIR__.'/auth.php';
 
-Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
-Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
-Route::get('/generes', [GenereController::class, 'index'])->name('generes');
+//Content uchun
 Route::get('/contents', [ContentController::class, 'index'])->name('contents');
+
+
+
+//Author uchun
+Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
+
+
+
+//Categories uchun
+Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+
+
+
+//Genre uchun
+Route::get('/generes', [GenereController::class, 'index'])->name('generes');
+
+
+
 
