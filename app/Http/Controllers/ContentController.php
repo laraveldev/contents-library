@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Genere;
@@ -68,24 +69,55 @@ class ContentController extends Controller
      */
     public function edit(Content $content)
     {
-        //
+        $categories = Category::pluck('name', 'id');
+        $authors = Author::pluck('name', 'id');
+        $generes = Genere::pluck('name', 'id');
+        
+        return view('contents.edit', compact('categories', 'authors', 'generes','content'));
+        
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Content $content)
-    {
-        //
+    public function update(Request $request, string $id) 
+{
+    $content = Content::findOrFail($id);
+
+    $content->title = $request->input('title');
+    $content->description = $request->input('description');
+    $content->url = $request->input('url'); 
+    $content->category_id = $request->input('category_id');     
+    $content->save();
+
+    if ($request->has('authors')) {
+        $content->authors()->sync($request->input('authors')); // bu kerak
     }
+
+    if ($request->has('generes')) {
+        $content->generes()->sync($request->input('generes')); // bu ham
+    }
+
+    return redirect()->route('contents.show', $content)->with('success', 'Kontent yangilandi!');
+
+}
+
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Content $content)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    $content = Content::findOrFail($id);
+    $content->delete();
+
+    return redirect()->route('contents')->with('success', 'Kontent ochirildi!');
+}
+
+
+
+
     public function adminIndex()
     {
         $categories = Category::all('id', 'name')->pluck('name', 'id');
