@@ -22,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('categories.create');
     }
 
     /**
@@ -30,15 +30,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->only('name'));
+        return view('categories.show', compact('category'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Category $category)
+    public function show(int $id)
     {
-        //
+        $category = Category::findOrFail($id);
+    return view('categories.show', compact('category'));
     }
 
     /**

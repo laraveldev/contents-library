@@ -7,25 +7,38 @@ use Illuminate\Database\Eloquent\Model;
 class Content extends Model
 {
     use HasFactory;
+
     protected $fillable = ['title', 'description', 'url', 'category_id'];
 
-    protected $with = ['category'];
+    protected $with = ['category', 'authors', 'generes'];
 
-    public function category(){
+
+    public function category()
+    {
         return $this->belongsTo(Category::class);
     }
-    
+
+    // public function authors()
+    // {
+    //     return $this->belongsToMany(
+    //         Author::class,
+    //         'author_content',
+    //         'content_id',
+    //         'author_id'
+    //     );
+    // }
+
+    // public function generes()
+    // {
+    //     return $this->belongsToMany(Genere::class);
+    // }
     public function authors()
-    {
-        return $this->belongsToMany(
-            Author::class,
-            'author_content', // pivot table name
-            'content_id', // foreign key on the pivot table for this model
-            'author_id', // foreign key on the pivot table for the related model
-        );
-    }
-    public function generes()
-    {
-        return $this->belongsToMany(Genere::class);
-    }
+{
+    return $this->belongsToMany(Author::class, 'author_content');
+}
+
+public function generes()
+{
+    return $this->belongsToMany(Genere::class, 'content_genere');
+}
 }

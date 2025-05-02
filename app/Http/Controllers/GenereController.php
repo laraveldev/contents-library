@@ -23,7 +23,7 @@ class GenereController extends Controller
      */
     public function create()
     {
-        //
+        return view('generes.create');
     }
 
     /**
@@ -31,15 +31,17 @@ class GenereController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $genere = Genere::create($request->only('name'));
+        return view('generes.show', compact('genere'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Genere $genere)
+    public function show(int $genidere)
     {
-        //
+        $genere = Genere::findOrFail($id);
+    return view('generes.show', compact('generes'));
     }
 
     /**

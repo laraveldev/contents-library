@@ -8,9 +8,14 @@ class Genere extends Model
 {
     use HasFactory;
     protected $fillable=['name'];
-    public function contents()
-    {
-        return $this->hasMany('\App\Models\Content');
-    }
+    
+    // app/Models/Genere.php
+
+public function contents()
+{
+    return $this->belongsToMany(Content::class, 'content_genere');
+}
+
+
     
 }

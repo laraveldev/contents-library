@@ -2,7 +2,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Genres') }}
+            <a href="{{ url('/generes/create') }}" class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
+                                    Create new genre
+            </a>
         </h2>
     </x-slot>
 
@@ -20,7 +22,7 @@
                 @foreach($generes as $genere)
                     <div class="bg-gray-800 border border-gray-600 shadow-lg rounded-xl p-6 text-white transform transition duration-300 hover:scale-105 hover:shadow-2xl">
                         <h3 class="text-lg font-semibold mb-2">{{ $genere->name }}</h3>
-                        <a href="{{ url('/authors/' . $genere->id) }}"
+                        <a href="{{ url('/generes/' . $genere->id) }}"
                            class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
                             Show
                         </a>

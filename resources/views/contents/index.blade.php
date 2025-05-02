@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            <a href="{{ url('/#') }}" class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
+            <a href="{{ url('/contents/create') }}" class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
                                     Create new content
             </a>
         </h2>
@@ -22,7 +22,7 @@
                             <div class="bg-gray-800 border border-gray-600 shadow-lg rounded-xl p-6 text-white transform transition duration-300 hover:scale-105 hover:shadow-2xl">
                                 <h3 class="text-lg font-semibold mb-2">{{ $content->title }}</h3>
                                 <p class="text-sm mb-4">{{ $content->description }}</p>
-                                <a href="{{ url('/contents/' . $content->id) }}" class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
+                                <a href="{{ route('contents.show', $content->id) }}" class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
                                     Show
                                 </a>
                             </div>

@@ -9,8 +9,8 @@ class Author extends Model
     use HasFactory;
     protected $fillable=['name', 'url'];
     
-    public function contents(): BelongsToMany
-    {
-        return $this->belongsToMany(Content::class);
-    }
+    public function contents()
+{
+    return $this->belongsToMany(Content::class, 'author_content');
+}
 }

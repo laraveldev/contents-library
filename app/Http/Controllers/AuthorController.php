@@ -22,7 +22,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('authors.create');
     }
 
     /**
@@ -30,16 +30,18 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $author = Author::create($request->only('name'));
+        return view('authors.show', compact('author'));
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Author $author)
-    {
-        //
-    }
+    public function show(int $id)
+{
+    $author = Author::findOrFail($id);
+    return view('authors.show', compact('author'));
+}
 
     /**
      * Show the form for editing the specified resource.

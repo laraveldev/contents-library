@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Content;
 use App\Models\Genere;
+use App\Models\Author;
 use Illuminate\Contracts\View\View;
 
 use Illuminate\Http\Request;
@@ -24,41 +25,43 @@ class ContentController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {
-        $categories = Category::all('id', 'name')->pluck('name', 'id');
-        $genres     = Genere::all('id', 'name')->pluck('name', 'id');
+{
+    $categories = Category::pluck('name', 'id');
+    $authors = Author::pluck('name', 'id');
+    $generes = Genere::pluck('name', 'id');
 
-        return view('admin.index', compact('categories', 'genres'));
-    }
+    return view('contents.create', compact('categories', 'authors', 'generes'));
+}
+
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        
-        $content = Content::query()->create([
-            'title'       => $request->get('title'),
-            'description' => $request->get('description'),
-            'url'         => $request->get('url'),
-            'category_id' => $request->get('category_id'),
-        ]);
+{
+    
 
-        $content->generes()->attach($request->get('genere_id'));
+    $content = Content::create($request->only('title', 'description', 'url', 'category_id'));
 
-        return redirect('/contents')->with('success', 'Content created successfully.');
-    }
+    $content->authors()->sync($request->authors);
+    $content->generes()->sync($request->generes);
+
+    return view('contents.show', compact('content'));
+}
+
+
 
     /**
      * Display the specified resource.
      */
-    public function show(Content $content)
-    {
-        
-        $content->load('authors','generes');
-        return view('contents.show', compact('content'));
-        
-    }
+    public function show($id)
+{
+    $content = Content::with(['category', 'authors', 'generes'])->findOrFail($id);
+    return view('contents.show', compact('content'));
+}
+
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -88,6 +91,6 @@ class ContentController extends Controller
         $categories = Category::all('id', 'name')->pluck('name', 'id');
         $genres     = Genere::all('id', 'name')->pluck('name', 'id');
 
-        return view('admin.index', compact('categories', 'genres'));
+        return view('contents.show', compact('categories', 'genres'));
     }
 }
