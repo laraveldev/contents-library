@@ -38,10 +38,10 @@ class GenereController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(int $genidere)
+    public function show(int $id)
     {
         $genere = Genere::findOrFail($id);
-    return view('generes.show', compact('generes'));
+    return view('generes.show', compact('genere'));
     }
 
     /**
