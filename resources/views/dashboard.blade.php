@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        Contents for you!
+        {{ __('All contents') }}
     </x-slot>
 
     <div class="py-12">
