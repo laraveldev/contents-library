@@ -39,7 +39,8 @@ class AuthorController extends Controller
      */
     public function show(int $id)
 {
-    $author = Author::findOrFail($id);
+    
+    $author = Author::with('contents')->findOrFail($id);
     return view('authors.show', compact('author'));
 }
 
@@ -48,22 +49,33 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        return view('authors.edit', compact('author'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Author $author)
+    public function update(Request $request,  $id)
     {
-        //
+        $author = Author::findOrFail($id);
+
+    $author->name = $request->input('name');
+         
+    $author->save();
+
+    
+
+    return redirect()->route('authors.show', $author)->with('success', 'author yangilandi!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Author $author)
+    public function destroy( $id)
     {
-        //
+        $author = Author::findOrFail($id);
+    $author->delete();
+
+    return redirect()->route('authors')->with('success', 'author ochirildi!');
     }
 }

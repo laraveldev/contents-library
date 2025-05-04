@@ -17,43 +17,46 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+        //Content uchun
+        Route::get('/contents', [ContentController::class, 'index'])->name('contents');
+        Route::get('/contents/create', [ContentController::class, 'create'])->name('create.contents');
+        Route::post('/contents/store', [ContentController::class, 'store'])->name('create.store');
+        Route::get('/contents/{id}', [ContentController::class, 'show'])->name('contents.show');
+        Route::get('/contents/edit/{content}', [ContentController::class, 'edit'])->name('contents.edit');
+        Route::put('/contents/{content}', [ContentController::class, 'update'])->name('contents.update');
+        Route::delete('/contents/{content}', [ContentController::class, 'destroy'])->name('contents.destroy');
+        
+        //Author uchun
+        Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
+        Route::get('/authors/create', [AuthorController::class, 'create'])->name('create.authors');
+        Route::post('/authors/store', [AuthorController::class, 'store'])->name('create.store');
+        Route::get('/authors/{id}', [AuthorController::class, 'show'])->name('authors.show');
+        Route::get('/authors/edit/{author}', [AuthorController::class, 'edit'])->name('authors.edit');
+        Route::put('/authors/{author}', [AuthorController::class, 'update'])->name('authors.update');
+        Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.destroy');
+        
+        //Categories uchun
+        Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
+        Route::get('/categories/create', [CategoryController::class, 'create'])->name('create.categories');
+        Route::post('/categories/store', [CategoryController::class, 'store'])->name('create.store');
+        Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
+        Route::get('/categories/edit/{category}', [CategoryController::class, 'edit'])->name('categories.edit');
+        Route::put('/categories/{category}', [CategoryController::class, 'update'])->name('categories.update');
+        Route::delete('/categories/{category}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+        
+        //Genre uchun
+        Route::get('/generes', [GenereController::class, 'index'])->name('generes');
+        Route::get('/generes/create', [GenereController::class, 'create'])->name('create.generes');
+        Route::post('/generes/store', [GenereController::class, 'store'])->name('create.store');
+        Route::get('/generes/{id}', [GenereController::class, 'show'])->name('generes.show');
+        Route::get('/generes/edit/{genere}', [GenereController::class, 'edit'])->name('generes.edit');
+        Route::put('/generes/{genere}', [GenereController::class, 'update'])->name('generes.update');
+        Route::delete('/generes/{id}', [GenereController::class, 'destroy'])->name('generes.destroy');
 });
 require __DIR__.'/auth.php';
 
-    //Content uchun
-    Route::get('/contents', [ContentController::class, 'index'])->name('contents');
-    Route::get('/contents/create', [ContentController::class, 'create'])->name('create.contents');
-    Route::post('/contents/store', [ContentController::class, 'store'])->name('create.store');
-    Route::get('/contents/{id}', [ContentController::class, 'show'])->name('contents.show');
-    Route::get('/contents/edit/{content}', [ContentController::class, 'edit'])->name('contents.edit');
-    Route::put('/contents/{content}', [ContentController::class, 'update'])->name('contents.update');
 
-    Route::delete('/contents/{content}', [ContentController::class, 'destroy'])->name('contents.destroy');
-    
-    //Author uchun
-    Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
-    Route::get('/authors/create', [AuthorController::class, 'create'])->name('create.authors');
-    Route::post('/authors/store', [AuthorController::class, 'store'])->name('create.store');
-    Route::get('/authors/{id}', [AuthorController::class, 'show'])->name('authors.show');
-    Route::get('/authors/edit/{id}', [AuthorController::class, 'edit'])->name('authors.edit');
-    Route::get('/authors/update', [AuthorController::class, 'update'])->name('authors.update');
-    Route::delete('/authors/{id}', [AuthorController::class, 'destroy'])->name('authors.destroy');
-    
-    //Categories uchun
-    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
-    Route::get('/categories/create', [CategoryController::class, 'create'])->name('create.categories');
-    Route::post('/categories/store', [CategoryController::class, 'store'])->name('create.store');
-    Route::get('/categories/{id}', [CategoryController::class, 'show'])->name('categories.show');
-    Route::patch('/categories/{id}', [CategoryController::class, 'edit'])->name('categories.edit');
-    Route::delete('/categories/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
-    
-    //Genre uchun
-    Route::get('/generes', [GenereController::class, 'index'])->name('generes');
-    Route::get('/generes/create', [GenereController::class, 'create'])->name('create.generes');
-    Route::post('/generes/store', [GenereController::class, 'store'])->name('create.store');
-    Route::get('/generes/{id}', [GenereController::class, 'show'])->name('generes.show');
-    Route::patch('/generes/{id}', [GenereController::class, 'edit'])->name('generes.edit');
-    Route::delete('/generes/{id}', [GenereController::class, 'destroy'])->name('generes.destroy');
 
 
 

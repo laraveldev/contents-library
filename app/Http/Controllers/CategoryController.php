@@ -48,22 +48,33 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('categories.edit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, int $id)
     {
-        //
+        $category = Category::findOrFail($id);
+
+    $category->name = $request->input('name');
+         
+    $category->save();
+
+    
+
+    return redirect()->route('categories.show', $category)->with('success', 'kategory yangilandi!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy( $id)
     {
-        //
+        $category = Category::findOrFail($id);
+    $category->delete();
+
+    return redirect()->route('categories')->with('success', 'Kategoriya ochirildi!');
     }
 }

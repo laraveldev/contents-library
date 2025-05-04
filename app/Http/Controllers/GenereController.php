@@ -49,22 +49,33 @@ class GenereController extends Controller
      */
     public function edit(Genere $genere)
     {
-        //
+        return view('generes.edit', compact('genere'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Genere $genere)
+    public function update(Request $request,  $id)
     {
-        //
+        $genere = Genere::findOrFail($id);
+
+    $genere->name = $request->input('name');
+         
+    $genere->save();
+
+    
+
+    return redirect()->route('generes.show', $genere)->with('success', 'kategory yangilandi!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Genere $genere)
+    public function destroy( $id)
     {
-        //
+        $genere = Genere::findOrFail($id);
+    $genere->delete();
+
+    return redirect()->route('generes')->with('success', 'GEnere ochirildi!');
     }
 }
