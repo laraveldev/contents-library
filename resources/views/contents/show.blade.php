@@ -77,9 +77,12 @@
                 <!-- Content Title and Description -->
                 <h1 class="text-3xl font-bold mb-4">{{ $content->title }}</h1>
 
-                <p class="text-gray-700 dark:text-gray-300 mb-6">
+                
+                <p class="text-gray-700 dark:text-gray-300 mb-6 whitespace-pre-line break-words">
                     {{ $content->description }}
                 </p>
+                
+                
 
                 <div class="mb-6">
                     <a href="{{ $content->url }}" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300">

@@ -30,6 +30,26 @@
             
                 </h2>
             </div>
+            @if($genere->contents->count())
+                    <h2 class="text-xl font-semibold mb-4">Ushbu Genre contentlar:</h2>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                        @foreach($genere->contents as $content)
+                            <div class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 shadow transition duration-300 hover:shadow-xl hover:ring-2 hover:ring-indigo-400">
+                                <h3 class="text-lg font-bold mb-2 text-gray-900 dark:text-white">{{ $content->title }}</h3>
+                                <p class="text-sm text-gray-700 dark:text-gray-300 whitespace-pre-line break-words mb-4">
+                                    {{ Str::limit($content->description, 150) }}
+                                </p>
+                                <a href="{{ route('contents.show', $content->id) }}"
+                                   class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
+                                    Ko‘rish
+                                </a>
+                            </div>
+                        @endforeach
+                    </div>
+                @else
+                    <p>Bu kategoriya uchun contentlar topilmadi.</p>
+                @endif
             
         </div>
     </div>
