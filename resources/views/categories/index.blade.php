@@ -2,7 +2,7 @@
         <x-app-layout>
             <x-slot name="header">
                 <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    <a href="{{ url('/authors/create') }}"
+                    <a href="{{ url('/categories/create') }}"
                        class="inline-block mt-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded">
                         Create new category
                     </a>
