@@ -19,7 +19,7 @@
                 </div>
             @endif
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 @foreach($authors as $author)
                     <div class="bg-gray-800 border border-gray-600 shadow-lg rounded-xl p-6 text-white transform transition duration-300 hover:scale-105 hover:shadow-2xl">
                         <h3 class="text-lg font-semibold mb-2">{{ $author->name }}</h3>
