@@ -14,7 +14,7 @@
                     <!-- Edit button (yellow) -->
                 <a href="{{ route('generes.edit', $genere->id) }}"
                   class="inline-block px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-semibold rounded">
-                         Edit
+                         Edit name
                 </a>
             
                          <!-- Delete button (red) -->
@@ -24,7 +24,7 @@
                     <button type="submit"
                     onclick="return confirm('Are you sure you want to delete this item?')"
                       class="inline-block px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded">
-                            Delete
+                            Delete this Genre
                     </button>
                 </form>
             
@@ -42,7 +42,7 @@
                                 </p>
                                 <a href="{{ route('contents.show', $content->id) }}"
                                    class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
-                                    Ko‘rish
+                                    Show
                                 </a>
                             </div>
                         @endforeach

@@ -86,7 +86,7 @@
 
                 <div class="mb-6">
                     <a href="{{ $content->url }}" target="_blank" class="text-blue-600 dark:text-blue-400 underline hover:text-blue-800 dark:hover:text-blue-300">
-                        Visit Book Website
+                        Visit  Website
                     </a>
                 </div>
 
