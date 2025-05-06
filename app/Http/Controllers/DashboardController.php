@@ -8,8 +8,7 @@ use App\Services\GreetingService;
 class DashboardController extends Controller
 {
     protected $greeting;
-
-
+    
     public function __construct(GreetingService $greeting)
     {
         $this->greeting = $greeting;
