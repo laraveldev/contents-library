@@ -85,6 +85,23 @@ class ContentController extends Controller
         return redirect()->route('contents')->with('success', 'Kontent ochirildi!');
     }
 
+    public function like($id)
+{
+    $content = Content::findOrFail($id);
+    $content->incrementLike();
+    
+    return redirect()->route('contents');
+}
+
+public function dislike($id)
+{
+    $content = Content::findOrFail($id);
+    $content->incrementDislike();
+    return redirect()->route('contents');
+}
+
+
+
 
 
 
