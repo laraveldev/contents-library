@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="header">
-        {{-- {{ __('All contents') }} --}}
+        {{ __('All contents') }}
         
-            <div class="p-6 bg-white rounded shadow">
+            {{-- <div class="p-6 bg-white rounded shadow">
                 <h1 class="text-2xl font-bold text-gray-800">
                     {{ $message }}
                 </h1>
-            </div>
+            </div> --}}
         
         
     </x-slot>
