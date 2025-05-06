@@ -41,4 +41,14 @@ public function generes()
 {
     return $this->belongsToMany(Genere::class, 'content_genere');
 }
+public function incrementLike()
+{
+    $this->increment('like_count');
+}
+
+public function incrementDislike()
+{
+    $this->increment('dislike_count');
+}
+
 }

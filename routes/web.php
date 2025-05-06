@@ -26,6 +26,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/contents/edit/{content}', [ContentController::class, 'edit'])->name('contents.edit');
         Route::put('/contents/{content}', [ContentController::class, 'update'])->name('contents.update');
         Route::delete('/contents/{content}', [ContentController::class, 'destroy'])->name('contents.destroy');
+        Route::post('/contents/{id}/like', [ContentController::class, 'like'])->name('contents.like');
+        Route::post('/contents/{id}/dislike', [ContentController::class, 'dislike'])->name('contents.dislike');
+
+
         
         //Author uchun
         Route::get('/authors', [AuthorController::class, 'index'])->name('authors');
