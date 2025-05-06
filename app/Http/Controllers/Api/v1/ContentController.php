@@ -77,9 +77,7 @@ class ContentController extends Controller
         
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, string $id) 
 {
     $content = Content::findOrFail($id);
@@ -99,14 +97,8 @@ class ContentController extends Controller
     }
 
     return redirect()->route('contents.show', $content)->with('success', 'Kontent yangilandi!');
-
 }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
 {
     $content = Content::findOrFail($id);
