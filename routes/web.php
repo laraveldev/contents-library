@@ -59,9 +59,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/generes/{genere}', [GenereController::class, 'update'])->name('generes.update');
         Route::delete('/generes/{id}', [GenereController::class, 'destroy'])->name('generes.destroy');
 
+        //Admin qo'shish va o'chirish
         Route::get('/users', [AdminController::class, 'index'])->name('users');
         Route::post('/users/{user}/make-admin', [AdminController::class, 'makeAdmin'])->name('users.makeAdmin');
-Route::delete('/users/{user}/remove-admin', [AdminController::class, 'removeAdmin'])->name('users.removeAdmin');
+        Route::delete('/users/{user}/remove-admin', [AdminController::class, 'removeAdmin'])->name('users.removeAdmin');
 
 
             
