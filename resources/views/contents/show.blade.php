@@ -52,7 +52,7 @@
                             </span>
                         @endforelse
                     </div>
-
+                    @role('admin')
                     <!-- Edit and Delete buttons at the right -->
                     <div class="flex gap-4">
                         <!-- Edit button -->
@@ -72,6 +72,7 @@
                             </button>
                         </form>
                     </div>
+                    @endrole
                 </div>
 
                 <!-- Content Title and Description -->

@@ -12,7 +12,7 @@
                 {{-- HEADER: Nomi + tugmalar --}}
                 <div class="flex items-center justify-between mb-6">
                     <h1 class="text-3xl font-bold">{{ $category->name }}</h1>
-
+                    @role('admin')
                     <div class="flex space-x-2">
                         {{-- Edit --}}
                         <a href="{{ route('categories.edit', $category->id) }}"
@@ -31,6 +31,7 @@
                             </button>
                         </form>
                     </div>
+                    @endrole
                 </div>
 
                 {{-- CONTENTLAR: 3 ustunli grid --}}
