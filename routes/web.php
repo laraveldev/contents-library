@@ -142,6 +142,11 @@ require __DIR__.'/auth.php';
 //         Route::get('/generes/edit/{genere}', [GenereController::class, 'edit'])->name('generes.edit');
 //         Route::put('/generes/{genere}', [GenereController::class, 'update'])->name('generes.update');
 //         Route::delete('/generes/{id}', [GenereController::class, 'destroy'])->name('generes.destroy');
+        
+//         // Admin add and delet       
+//         Route::get('/users', [AdminController::class, 'index'])->name('users');
+//         Route::post('/users/{user}/make-admin', [AdminController::class, 'makeAdmin'])->name('users.makeAdmin');
+//         Route::delete('/users/{user}/remove-admin', [AdminController::class, 'removeAdmin'])->name('users.removeAdmin');
 //     });
 // });
 
