@@ -77,6 +77,7 @@ require __DIR__.'/auth.php';
 // use App\Http\Controllers\GenereController;
 // use App\Http\Controllers\DashboardController;
 // use App\Http\Controllers\ContentController;
+// use App\Http\Controllers\AdminController;
 // use App\Http\Controllers\CategoryController;
 // use Illuminate\Support\Facades\Route;
 
