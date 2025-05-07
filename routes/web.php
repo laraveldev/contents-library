@@ -6,6 +6,7 @@ use App\Http\Controllers\GenereController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 //Profile uchun
@@ -58,7 +59,11 @@ Route::middleware('auth')->group(function () {
         Route::put('/generes/{genere}', [GenereController::class, 'update'])->name('generes.update');
         Route::delete('/generes/{id}', [GenereController::class, 'destroy'])->name('generes.destroy');
 
-        
+        Route::get('/users', [AdminController::class, 'index'])->name('users');
+        Route::post('/users/{user}/make-admin', [AdminController::class, 'makeAdmin'])->name('users.makeAdmin');
+Route::delete('/users/{user}/remove-admin', [AdminController::class, 'removeAdmin'])->name('users.removeAdmin');
+
+
             
 
        
