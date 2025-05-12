@@ -6,7 +6,9 @@ use App\Http\Controllers\GenereController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AddAdminController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Middleware\SuperAdminOnly;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -50,9 +52,13 @@ Route::middleware('auth')->group(function () {
         Route::delete('/generes/{id}', [GenereController::class, 'destroy'])->name('generes.destroy');
         
         // Admin add and delet       
-        Route::get('/users', [AdminController::class, 'index'])->name('users');
-        Route::post('/users/{user}/make-admin', [AdminController::class, 'makeAdmin'])->name('users.makeAdmin');
-        Route::delete('/users/{user}/remove-admin', [AdminController::class, 'removeAdmin'])->name('users.removeAdmin');
+        Route::get('/users', [AdminController::class, 'index'])->middleware(['auth', 'role:admin', SuperAdminOnly::class])->name('users');
+        Route::post('/users/{user}/make-admin', [AdminController::class, 'makeAdmin'])->middleware(['auth', 'role:admin', SuperAdminOnly::class])->name('users.makeAdmin');
+        Route::delete('/users/{user}/remove-admin', [AdminController::class, 'removeAdmin'])->middleware(['auth', 'role:admin', SuperAdminOnly::class])->name('users.removeAdmin');
+        Route::get('/users/create',[AddAdminController::class, 'create'])->middleware(['auth', 'role:admin', SuperAdminOnly::class])->name('admin.create');
+        Route::post('/users/store',[AddAdminController::class, 'store'])->middleware(['auth', 'role:admin', SuperAdminOnly::class])->name('admin.store');
+        Route::delete('/users/{user}', [AdminController::class, 'destroy'])->middleware(['auth', 'role:admin', SuperAdminOnly::class])->name('users.destroy');
+
     });
 
     // Profil uchun (har ikki rol uchun ochiq)
