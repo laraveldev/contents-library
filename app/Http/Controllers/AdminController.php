@@ -40,6 +40,17 @@ class AdminController extends Controller
 
         return redirect()->back()->with('success', "$user->name endi admin emas.");
     }
+    public function destroy(User $user)
+{
+    if ($user->id == 1) {
+        return redirect()->back()->with('error', 'Super Adminni o‘chirish mumkin emas.');
+    }
+
+    $user->delete();
+
+    return redirect()->back()->with('success', 'Foydalanuvchi muvaffaqiyatli o‘chirildi.');
+}
+
 }
 
 
