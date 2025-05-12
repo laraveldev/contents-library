@@ -40,6 +40,7 @@ class ContentController extends Controller
 
     public function show($id)
     {
+        
     $content = Content::with(['category', 'authors', 'generes'])->findOrFail($id);
 
     return view('contents.show', compact('content'));
