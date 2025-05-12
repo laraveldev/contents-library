@@ -39,13 +39,18 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
+        
 
         <div class="flex items-center justify-end mt-4">
-            
+            <a href="{{ url()->previous() }}" 
+                class="inline-block px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-semibold rounded">
+                 Back
+             </a>
 
             <x-primary-button class="ms-4">
                 {{ __('Add Admin') }}
             </x-primary-button>
         </div>
+        
     </form>
 </x-guest-layout>

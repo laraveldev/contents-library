@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Category') }}
+            <a href="{{ url()->previous() }}" 
+                class="inline-block px-4 py-2 bg-gray-500 hover:bg-gray-600 text-white text-sm font-semibold rounded">
+                 Back
+             </a>
         </h2>
     </x-slot>
 
@@ -12,26 +15,28 @@
                 {{-- HEADER: Nomi + tugmalar --}}
                 <div class="flex items-center justify-between mb-6">
                     <h1 class="text-3xl font-bold">{{ $category->name }}</h1>
-                    @role('admin')
-                    <div class="flex space-x-2">
-                        {{-- Edit --}}
-                        <a href="{{ route('categories.edit', $category->id) }}"
-                           class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-semibold rounded">
-                            Edit name
-                        </a>
 
-                        {{-- Delete --}}
-                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
-                              onsubmit="return confirm('Are you sure you want to delete this item?')">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit"
-                                    class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded">
-                                Delete this Category
-                            </button>
-                        </form>
-                    </div>
-                    @endrole
+                    {{-- Faqat super admin (id=1) yoki kategoriyani yaratgan user uchun --}}
+                    @if(auth()->id() === 1 || auth()->id() === $category->user_id)
+                        <div class="flex space-x-2">
+                            {{-- Edit --}}
+                            <a href="{{ route('categories.edit', $category->id) }}"
+                               class="px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white text-sm font-semibold rounded">
+                                Edit name
+                            </a>
+
+                            {{-- Delete --}}
+                            <form action="{{ route('categories.destroy', $category->id) }}" method="POST"
+                                  onsubmit="return confirm('Are you sure you want to delete this item?')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit"
+                                        class="px-4 py-2 bg-red-600 hover:bg-red-700 text-white text-sm font-semibold rounded">
+                                    Delete this Category
+                                </button>
+                            </form>
+                        </div>
+                    @endif
                 </div>
 
                 {{-- CONTENTLAR: 3 ustunli grid --}}
