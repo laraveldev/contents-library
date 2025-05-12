@@ -2,39 +2,47 @@
 
 namespace App\Http\Controllers\Admin;
 
-// use App\Http\Controllers\Controller;
-// use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
 
 class AddAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         //
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new admin.
      */
     public function create()
     {
+        // Faqat super admin (id = 1) ruxsat oladi
+        if (auth()->id() !== 1) {
+            return redirect()->route('contents.index')->with('error', 'Sizda bu sahifaga ruxsat yo‘q.');
+        }
+
         return view('admin.create-admin');
     }
 
+    /**
+     * Store a newly created admin in storage.
+     */
     public function store(Request $request)
     {
-        
+        // Faqat super admin (id = 1) ruxsat oladi
+        if (auth()->id() !== 1) {
+            return redirect()->route('contents.index')->with('error', 'Sizda admin yaratishga ruxsat yo‘q.');
+        }
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
 
         $user = User::create([
             'name' => $request->name,
@@ -42,40 +50,17 @@ class AddAdminController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        
+        // Rollarni belgilash (agar kerak bo‘lsa)
+        $user->assignRole('admin');
 
-        return redirect(route('users', absolute: false));
+        return redirect()->route('users')->with('success', 'Yangi admin yaratildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+    public function show(string $id) { /* ... */ }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+    public function edit(string $id) { /* ... */ }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+    public function update(Request $request, string $id) { /* ... */ }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+    public function destroy(string $id) { /* ... */ }
 }
