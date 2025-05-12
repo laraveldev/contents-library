@@ -4,16 +4,29 @@
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
+                @role('admin')
+                @if(auth()->user()->id == 1)
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
                         <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
                     </a>
                 </div>
+                @endif
+                @endrole
 
                 <!-- Navigation Links -->
+                @role('admin')
+                @if(auth()->user()->id == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Home') }}
+                    </x-nav-link>
+                </div>
+                @endif
+                @endrole
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('contents')" :active="request()->routeIs('contents')">
+                        {{ __('Contents') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
@@ -31,18 +44,18 @@
                         {{ __('Categories') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('contents')" :active="request()->routeIs('contents')">
-                        {{ __('Contents') }}
-                    </x-nav-link>
-                </div>
+                
                 @role('admin')
+                @if(auth()->user()->id == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('Users') }}
                     </x-nav-link>
                 </div>
+                @endif
                 @endrole
+                
+
                 
                 
             </div>

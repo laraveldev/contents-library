@@ -12,18 +12,7 @@
                 <!-- Author, Category, Genres at the left side and Edit/Delete buttons at the right -->
                 <div class="mb-6 flex flex-wrap gap-4 items-center justify-between">
                     <!-- Author(s) -->
-                    <div>
-                        <h5 class="text-sm font-semibold mb-1">Author(s)</h5>
-                        @forelse($content->authors as $author)
-                            <a href="{{ route('authors.show', $author->id) }}" class="bg-blue-700 text-white text-xs font-medium px-3 py-1 rounded-full mr-2 mb-2 hover:bg-blue-800">
-                                {{ $author->name }}
-                            </a>
-                        @empty
-                            <span class="bg-gray-500 text-white text-xs font-medium px-3 py-1 rounded-full mr-2 mb-2">
-                                No authors found
-                            </span>
-                        @endforelse
-                    </div>
+                    
 
                     <!-- Category -->
                     <div>
@@ -52,6 +41,19 @@
                             </span>
                         @endforelse
                     </div>
+                    <div>
+                        <h5 class="text-sm font-semibold mb-1">Author(s)</h5>
+                        @forelse($content->authors as $author)
+                            <a href="{{ route('authors.show', $author->id) }}" class="bg-blue-700 text-white text-xs font-medium px-3 py-1 rounded-full mr-2 mb-2 hover:bg-blue-800">
+                                {{ $author->name }}
+                            </a>
+                        @empty
+                            <span class="bg-gray-500 text-white text-xs font-medium px-3 py-1 rounded-full mr-2 mb-2">
+                                No authors found
+                            </span>
+                        @endforelse
+                    </div>
+                    
                     @role('admin')
                     <!-- Edit and Delete buttons at the right -->
                     <div class="flex gap-4">
