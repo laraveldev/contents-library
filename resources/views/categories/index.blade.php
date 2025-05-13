@@ -1,46 +1,44 @@
-
-        <x-app-layout>
-            <x-slot name="header">
+<x-app-layout>
+    <x-slot name="header">
+        <div class="flex justify-between items-center">
+            <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
                 Categories
-                @role('admin')
-                <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-                    <a href="{{ url('/categories/create') }}"
-                       class="inline-block mt-2 px-4 py-2 bg-green-600 hover:bg-green-700 text-white text-sm font-medium rounded">
-                        Create new category
-                    </a>
-                </h2>
-                @endrole
-            </x-slot>
-        
-            <div class="py-12">
-                <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                        <div class="p-6 text-gray-900 dark:text-gray-100">
-                            @if (session('success'))
-                        <div class="mb-4 font-medium text-sm text-green-600">
+            </h2>
+
+            @role('admin')
+            <a href="{{ url('/categories/create') }}"
+               class="inline-block px-5 py-2 bg-gradient-to-r from-teal-500 to-blue-600 hover:from-teal-600 hover:to-blue-700 text-white text-sm font-semibold rounded-xl shadow-lg transition duration-300">
+                ➕ Create New Category
+            </a>
+            @endrole
+        </div>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white dark:bg-gray-900 overflow-hidden shadow-lg sm:rounded-xl">
+                <div class="p-6 text-gray-900 dark:text-gray-100">
+                    @if (session('success'))
+                        <div class="mb-4 font-medium text-sm text-green-500 dark:text-green-400">
                             {{ session('success') }}
                         </div>
                     @endif
-        
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                    <!-- Category Cards -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         @foreach($categories as $category)
-                            <div class="bg-gray-800 border border-gray-600 shadow-lg rounded-xl p-6 text-white transform transition duration-300 hover:scale-105 hover:shadow-2xl">
-                                <h3 class="text-lg font-semibold mb-2">{{ $category->name }}</h3>
+                            <div class="bg-gradient-to-tl from-orange-500 to-pink-500 border border-orange-600 shadow-xl rounded-2xl p-6 text-white transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                                <h3 class="text-xl font-semibold mb-3">{{ $category->name }}</h3>
                                 <a href="{{ url('/categories/' . $category->id) }}"
-                                   class="inline-block mt-2 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded">
-                                    Show
+                                   class="inline-block mt-4 px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg shadow-md transition">
+                                    👁 Show
                                 </a>
                             </div>
                         @endforeach
                     </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
-        </x-app-layout>
-        
-        
-        
-        
-        
-
+        </div>
+    </div>
+</x-app-layout>
