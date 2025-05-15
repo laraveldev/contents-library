@@ -17,7 +17,7 @@
                     <h1 class="text-3xl font-bold">{{ $category->name }}</h1>
 
                     {{-- Faqat super admin (id=1) yoki kategoriyani yaratgan user uchun --}}
-                    @if(auth()->id() === 1 || auth()->id() === $category->user_id)
+                    @if(auth()->id() === 1 || auth()->id() === $category->user_id)zz
                         <div class="flex space-x-2">
                             {{-- Edit --}}
                             <a href="{{ route('categories.edit', $category->id) }}"
