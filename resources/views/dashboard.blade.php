@@ -1,6 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
-        {{ __('All contents') }}
+
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-white">
+                📚 All Contents
+            </h2>
+
         
             {{-- <div class="p-6 bg-white rounded shadow">
                 <h1 class="text-2xl font-bold text-gray-800">

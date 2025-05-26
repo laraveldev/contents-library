@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('description');
-            // $table->string('url')->unique();
+
             $table->string('url');
             $table->foreignId('category_id')
                 ->constrained('categories')

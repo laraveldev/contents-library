@@ -1,0 +1,50 @@
+version: '3.8'
+
+services:
+  app:
+    platform: linux/arm64
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.dev
+    container_name: contents-hub-app
+    volumes:
+      - .:/var/www
+    depends_on:
+      - db
+    networks:
+      - contents-hub
+
+  db:
+    platform: linux/arm64
+    image: postgres:15
+    container_name: contents-hub-db
+    environment:
+      POSTGRES_DB: ${DB_DATABASE}
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    ports:
+      - "1000:${DB_PORT}"
+    volumes:
+      - contents-hub:/var/lib/postgresql/data
+    networks:
+      - contents-hub
+
+  nginx:
+    platform: linux/arm64
+    image: nginx:alpine
+    container_name: content-hub-nginx
+    ports:
+      - "${APP_PORT}:80"
+    volumes:
+      - .:/var/www
+      - ./docker/nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - contents-hub
+
+volumes:
+  contents-hub:
+
+networks:
+  contents-hub:

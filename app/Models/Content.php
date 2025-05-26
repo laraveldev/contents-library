@@ -18,20 +18,7 @@ class Content extends Model
         return $this->belongsTo(Category::class);
     }
 
-    // public function authors()
-    // {
-    //     return $this->belongsToMany(
-    //         Author::class,
-    //         'author_content',
-    //         'content_id',
-    //         'author_id'
-    //     );
-    // }
 
-    // public function generes()
-    // {
-    //     return $this->belongsToMany(Genere::class);
-    // }
     public function authors()
 {
     return $this->belongsToMany(Author::class, 'author_content');
