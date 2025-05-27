@@ -18,8 +18,13 @@ use MoonShine\Laravel\Pages\Dashboard;
 use MoonShine\Laravel\Pages\ErrorPage;
 use MoonShine\Laravel\Pages\LoginPage;
 use MoonShine\Laravel\Pages\ProfilePage;
+use App\MoonShine\Resources\CategoryResource;
 
 return [
+
+'resources' => [
+    CategoryResource::class,
+],
     'title' => env('MOONSHINE_TITLE', 'MoonShine'),
     'logo' => 'vendor/moonshine/logo.svg',
     'logo_small' => 'vendor/moonshine/logo-small.svg',

@@ -8,6 +8,8 @@ use MoonShine\Laravel\Pages\Crud\DetailPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\Laravel\Resources\ModelResource;
+use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Text;
 use Throwable;
 
 
@@ -21,7 +23,10 @@ class CategoryDetailPage extends DetailPage
      */
     protected function fields(): iterable
     {
-        return [];
+        return [
+            ID::make()->sortable(),
+            Text::make('Name', 'name'),
+        ];
     }
 
     /**

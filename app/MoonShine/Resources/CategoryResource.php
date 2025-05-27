@@ -9,7 +9,8 @@ use App\Models\Category;
 use App\MoonShine\Pages\Category\CategoryIndexPage;
 use App\MoonShine\Pages\Category\CategoryFormPage;
 use App\MoonShine\Pages\Category\CategoryDetailPage;
-
+use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Text;
 use MoonShine\Laravel\Resources\ModelResource;
 use MoonShine\Laravel\Pages\Page;
 
@@ -21,6 +22,14 @@ class CategoryResource extends ModelResource
     protected string $model = Category::class;
 
     protected string $title = 'Categories';
+    public static string $group = 'Categories';
+        public function fields(): array
+    {
+        return [
+            ID::make()->sortable(),
+            Text::make('Name', 'name'),
+        ];
+    }
     
     /**
      * @return list<Page>
