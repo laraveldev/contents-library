@@ -16,11 +16,9 @@ return [
     |
     */
 
-<<<<<<< HEAD
-    'default' => env('DB_CONNECTION', 'sqlite'),
-=======
+
     'default' => env('DB_CONNECTION', 'pgsql'),
->>>>>>> 68d4793 (Initial commit)
+
 
     /*
     |--------------------------------------------------------------------------
