@@ -41,7 +41,7 @@
 
                 {{-- CONTENTLAR: 3 ustunli grid --}}
                 @if($author->contents->count())
-                    <h2 class="text-xl font-semibold mb-4">Kitoblari:</h2>
+                    <h2 class="text-xl font-semibold mb-4">Contents:</h2>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         @foreach($author->contents as $content)
